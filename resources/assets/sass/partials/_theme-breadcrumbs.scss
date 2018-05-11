@@ -1,0 +1,21 @@
+.breadcrumbs {
+	text-align: right;
+	color: $light-blue;
+	margin: 10px 0 25px;
+	font-size: 0.85em;
+
+	a {
+		color: $light-blue;
+		text-decoration: none;
+		transition: color 250ms;
+
+		&:hover {
+			color: $dark-blue;
+			text-decoration: underline;
+		}
+	}
+
+	.spacer {
+		margin: 0 8px;
+	}
+}

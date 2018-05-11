@@ -1,0 +1,8 @@
+.home-hero {
+	height: 500px;
+	@extend %background-cover;
+
+	@media (max-width:em($mobile-menu-switch-max)){
+		height: 250px;
+	}
+}

@@ -1,0 +1,180 @@
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0;
+  }
+
+  100% {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+@keyframes fallIn {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes zoomLeft {
+  0% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes zoomRight {
+  0% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes zoomOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  99% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+@keyframes zoomOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  99% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+
+  100% {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+@keyframes scaleToFull {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes scaleToNone {
+  0% {
+    transform: scale(1);
+  }
+
+  99% {
+    transform: scale(0);
+  }
+
+  100% {
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+.fade-in {
+  animation: fadeIn 500ms ease-out;
+  animation-fill-mode:forwards;
+}
+
+.fade-out {
+  animation: fadeOut 500ms ease-out;
+  animation-fill-mode:forwards;
+}
+
+.fall-in {
+    animation: fallIn 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.zoom-in-left {
+    animation: zoomLeft 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.zoom-in-right {
+    animation: zoomRight 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.zoom-out-left {
+    animation: zoomOutLeft 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.zoom-out-right {
+    animation: zoomOutRight 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.scale-to-full {
+    animation: scaleToFull 500ms ease-out;
+    animation-fill-mode:forwards;
+}
+
+.scale-to-none {
+    animation: scaleToNone 500ms ease-out;
+    animation-fill-mode:forwards;
+}

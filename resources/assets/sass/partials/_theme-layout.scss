@@ -1,0 +1,91 @@
+.content-block {
+	padding: 60px 0;
+}
+
+.inner-wrapper {
+	margin: 0 auto;
+	max-width: 768px;
+}
+
+.content-block-gray {
+	background: $light-gray;
+}
+
+.page-content {
+	margin-bottom: 60px;
+}
+
+.standard-hero-image {
+	height: 250px;
+	@extend %background-cover;
+}
+
+.split-content {
+	display: flex;
+	justify-content: space-between;
+
+	@media (max-width: em($mobile-menu-switch-max)){
+		display: block;
+	}
+
+	.left {
+		@media (max-width: em($mobile-menu-switch-max)){
+			margin-bottom: 40px;
+		}
+	}
+
+	.left,
+	.right {
+		width: 48%;
+
+		@media (max-width: em($mobile-menu-switch-max)){
+			width: 100%;
+		}
+	}
+}
+
+/**
+ *  Page specific layouts
+ **/ 
+.home-brands {
+	text-align: center;
+
+	.brands {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		padding: 60px 0 0;
+
+		@media (max-width:em($mobile-menu-switch-max)){
+			display: block;
+		}
+
+
+		a, //the wrapping link and/or the image
+		.brand-logo {
+			max-width: 300px;
+			max-height: 115px;
+			width: auto;
+			height: auto;
+			margin: 0 10px;
+
+			@media (max-width:em($mobile-menu-switch-max)){
+				margin: 0 auto 40px;
+				display: block;
+			}
+		}
+	}
+}
+
+//contact page
+.page-template-page-contact {
+	.contact-form-container {
+		background: $light-gray;
+		padding: 40px;
+
+		@media (max-width:em($mobile-menu-switch-max)){
+			padding: 10px;
+		}
+	}
+}

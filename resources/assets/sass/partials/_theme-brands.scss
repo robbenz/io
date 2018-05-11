@@ -1,0 +1,48 @@
+.brands-section {
+	margin: 60px 0 0 0;
+
+	.brand {
+		background: $light-gray;
+		padding: 40px 0;
+
+		.wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			@media (max-width: em($mobile-menu-switch-max)){
+				display: block;
+			}
+		}
+
+		.logo {
+			margin: 0 20px;
+
+			@media (max-width: em($mobile-menu-switch-max)){
+				margin: 0 auto 40px;
+				text-align: center;
+			}
+
+			img {
+				max-width: 300px;
+				max-height: 115px;
+			}
+		}
+
+		.content-editor {
+			max-width: 600px;
+		}
+
+		&:nth-of-type(2n){
+			background: white;
+
+			.content-editor {
+				order: 1;
+			}
+
+			.logo {
+				order: 2;
+			}
+		}
+	}
+}

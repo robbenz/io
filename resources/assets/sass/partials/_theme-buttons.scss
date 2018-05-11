@@ -1,0 +1,31 @@
+button {
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	background: lighten($light-blue, 30%);
+	color: $dark-blue;
+	padding: 7px 34px;
+	transition: all 250ms;
+	font-weight: 600;
+	cursor: pointer;
+
+	&:hover {
+		transform: translateY(-2px);
+		background: lighten($light-blue, 10%);
+		color: white; //darken($dark-blue, 20%);
+	}
+
+	&:active {
+		transform: translateY(-1px);
+		background: $light-blue;
+	}
+}

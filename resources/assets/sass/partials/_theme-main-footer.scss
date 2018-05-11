@@ -1,0 +1,88 @@
+.main-footer {
+  padding: 77px 0;
+  height: auto;
+  background-color: $main-footer-background-color;
+  color: white;
+
+  @media (max-width:em($mobile-menu-switch-max)){
+  	padding: 45px 0 25px; //add a little more to the top because the last p has a 20px bottom padding
+  	text-align: center;
+  }
+
+  .wrapper {
+  	display: flex;
+  	justify-content: space-around;
+
+  	@media (max-width:em($mobile-menu-switch-max)){
+  		display: block;
+  	}
+  }
+
+  .right {
+  	display: flex;
+  	justify-content: flex-end;
+  	
+  	@media (max-width:em($mobile-menu-switch-max)){
+  		display: block;
+  	}
+
+  	.left {
+  		margin-right: 45px;
+
+  		@media (max-width:em($mobile-menu-switch-max)){
+  			margin: 0 0 40px 0;
+  		}
+  	}
+
+  	.right {
+  		display: block;
+
+  		p { 
+  			line-height: 1.3;
+  			margin-bottom: 20px; 
+  		}
+  	}
+
+  }
+
+  .footer-logo {
+  	@media (max-width:em($mobile-menu-switch-max)){
+  		margin-bottom: 40px;
+  	}
+
+  	a {
+  		color: white;
+  	}
+
+  	svg {
+			width: 172px;
+  		height: 142px;
+  	}
+  }
+
+  .footer-menu {
+  	list-style: none;
+
+  	.menu-item {
+  		margin-bottom: 10px;
+  	}
+
+  	a {
+  		color: white;
+  		text-transform: uppercase;
+  		font-weight: 600;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+  	}
+  }
+}
+
+.secondary-footer {
+	background-color: $secondary-footer-background-color;
+	padding: 25px 0;
+	color: white;
+	font-size: 0.9em;
+}

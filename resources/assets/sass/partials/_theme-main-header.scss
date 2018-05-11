@@ -1,0 +1,41 @@
+.main-header {
+  background-color: $main-header-background-color;
+
+  .site-logo {
+		height: 100px;
+	  width: 115px;
+	  margin: 0 45px;
+
+	  @media (max-width:em(890)){
+	  	margin: 0 20px;
+	  }
+
+	  @media (max-width:em($mobile-menu-switch-max)){
+	  	margin: 0 auto;
+	  	height: 64px;
+  		width: 76px;
+	  }
+
+  	img {
+  		width: 100%;
+  		height: auto;
+  	}
+  }
+
+  & ~ main {
+  	padding-top: 0;
+
+  	@media (max-width:em($mobile-menu-switch-max)){
+  		padding-top: 78px !important;
+  	}
+  }
+}
+
+.header-menu-mobile {
+  display: none;
+  padding: 7px 0;
+
+  @media (max-width:em($mobile-menu-switch-min)) {
+    display: block;
+  }
+}

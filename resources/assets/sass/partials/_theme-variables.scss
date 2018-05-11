@@ -1,0 +1,34 @@
+// imported theme fonts
+// @font-face font imports from sass/fonts
+// ---------------------------------
+
+// @import "../fonts/font-font-name";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,600|Libre+Baskerville');
+
+
+// Theme brand colors
+// ---------------------------------
+
+$theme-black : #333333;
+$theme-blue  : #0088cc;
+
+$light-gray  : #f0efee;
+$dark-blue	 : #425462;
+$light-blue  : #717f89;
+
+// Theme specific variables
+// ---------------------------------
+
+$body-background-color : white;
+
+$wrapperWidth  : 1170; // px value
+
+$font-main   : 'Lato'; //Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-accent : 'Libre Baskerville'; //accent font name', 'fallback fonts';
+
+$font-base-color : $dark-blue;
+$link-color      : $dark-blue;
+
+$mobile-header-height: 100px;
+
+// $footer-background-color : transparent;

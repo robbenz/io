@@ -1,0 +1,62 @@
+.gform_wrapper {
+	.gfield {
+		padding-right: 0 !important;
+	}
+
+	input[type=submit] {
+		appearance: none;
+		border: 0;
+		text-transform: uppercase;
+
+		//Anything below this should be the same as .btn
+		cursor: pointer;
+		display: inline-block;
+		text-decoration: none;
+		background: lighten($light-blue, 30%);
+		color: $dark-blue;
+		padding: 7px 34px;
+		transition: all 250ms;
+		font-weight: 600;
+
+		&:hover {
+			transform: translateY(-2px);
+			background: lighten($light-blue, 10%);
+			color: white; //darken($dark-blue, 20%);
+		}
+
+		&:active {
+			transform: translateY(-1px);
+			background: $light-blue;
+		}
+	}
+
+	.gfield_error {
+		min-width: 100% !important;
+		border: 0 !important;
+		background: transparent !important;
+		margin: 0 !important;
+
+		input,
+		textarea {
+			background: rgba(red, 0.15);
+		}
+	}
+}
+
+.gform_wrapper li.gfield.gfield_error.gfield_contains_required div.gfield_description {
+	padding-top: 0;
+}
+
+#gform_wrapper_1 {
+	margin: 0;
+
+	label {
+		@extend %visually-hidden;
+	}
+
+	input[type=text],
+	textarea {
+		border: 0;
+		padding-left: 8px;
+	}
+}

@@ -62,3 +62,195 @@ function iodd_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'iodd_widgets_init' );
+
+
+
+/**
+* widget class
+*/
+
+// Register and load the widget
+function pre_load_widget() {
+    register_widget( 'events_widget' );
+    register_widget( 'blurbs_widget' );
+}
+add_action( 'widgets_init', 'pre_load_widget' );
+
+
+// Create fundy widget
+class blurbs_widget extends WP_Widget {
+    function __construct() {
+        parent::__construct(
+            'blurbs_widget',
+            __('All the Blurbs', 'blurbs_widget_domain'),
+            array(
+                'description'   => __( 'This widget will show the blurb you select', 'blurbs_widget_domain' ),
+                'classname'     => __( 'blurbs_wrap', 'blurbs_widget_domain' ),
+            )
+        );
+    }
+
+    // front
+    public function widget( $args, $instance ) {
+      $title = apply_filters( 'widget_title', $instance['title'] );
+      $blurb = $instance[ 'blurb' ];
+
+      echo $args['before_widget'];   // before and after widget args -- theme default i guess
+      if ( ! empty( $title ) ) {
+        echo $args['before_title'] . $title . $args['after_title'];
+      }
+
+      $new_blurb = get_post($blurb);
+      echo '<h2>' . $new_blurb->post_title . '</h2><br>';
+      echo $new_blurb->post_content . '<br>';
+
+      echo $args['after_widget'];
+    }
+
+    // back
+    public function form( $instance ) {
+      if ( isset( $instance[ 'title' ] ) ) {
+        $title = $instance[ 'title' ];
+      } else {
+        $title = __( 'All The Blurbs', 'blurbs_widget_domain' );
+      }
+      $blurb = $instance[ 'blurb' ];
+      $args = array(
+        'post_type'   => 'blurbs'
+      );
+      $all_blurbs = get_posts( $args );
+
+      // Widget admin form
+      ?>
+      <p>
+        <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+        <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+      </p>
+
+      <p>
+        <select id="<?php echo $this->get_field_id('blurb'); ?>" name="<?php echo $this->get_field_name('blurb'); ?>" class="widefat" style="width:100%;">
+          <?php foreach($all_blurbs as $one_blurb) : ?>
+            <option <?php selected( $instance['blurb'], $one_blurb->ID ); ?>  value="<?php echo $one_blurb->ID; ?>"><?php echo $one_blurb->post_title; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </p>
+
+      <p>
+        <a class="page-title-action" target="_blank" href="<?php echo site_url(); ?>/wp-admin/post-new.php?post_type=blurbs">Add New Blurb</a>
+      </p>
+
+      <?php
+    }
+
+    // save it
+    public function update( $new_instance, $old_instance ) {
+      $instance = array();
+      $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+      $instance['blurb'] = $new_instance['blurb'];
+      return $instance;
+    }
+
+} // Class dismissed
+
+
+// Create the events widget
+class events_widget extends WP_Widget {
+    function __construct() {
+        parent::__construct(
+            'events_widget',
+            __('Upcoming Events', 'events_widget_domain'),
+            array(
+                'description'   => __( 'This widget will show your Upcoming events', 'events_widget_domain' ),
+                'classname'     => __( 'events_wrap', 'events_widget_domain' ),
+            )
+        );
+    }
+
+    // front
+    public function widget( $args, $instance ) {
+        $title = apply_filters( 'widget_title', $instance['title'] );
+        if ( !$number = (int) $instance['number'] ) {
+            $number = 10;
+        } elseif ( $number < 1 ) {
+            $number = 1;
+        } elseif ( $number > 15 ) {
+            $number = 15;
+        }
+
+        $sup = new WP_Query(
+          array(
+            'showposts'           => $number,
+            'nopaging'            => 0,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'post_type'           => 'events',
+          )
+        );
+
+        if ($sup->have_posts()) :
+
+          echo $args['before_widget'];
+          if ( ! empty( $title ) ) {
+            echo $args['before_title'] . $title . $args['after_title'];
+          }
+          // show the stuff
+          ?>
+          <div class="event_widget_wrap">
+            <table id="event_list">
+              <?php while ($sup->have_posts()) : $sup->the_post(); ?>
+                <tr>
+                  <td class="event_date"><?php echo get_field('event_date'); ?></td>
+                  <td class="event_desc"><?php the_title(); ?></td>
+                </tr>
+                <tr class="spacer">
+                  <td></td>
+                  <td></td>
+                </tr>
+              <?php endwhile; ?>
+            </table>
+          </div><!-- .event_widget_wrap -->
+
+          <?php
+          echo $args['after_widget'];
+          wp_reset_postdata();
+        endif;
+      }
+
+      // back
+      public function form( $instance ) {
+        if ( isset( $instance[ 'title' ] ) ) {
+          $title = $instance[ 'title' ];
+        } else {
+          $title = __( 'Upcoming Events', 'events_widget_domain' );
+        }
+        if ( !isset($instance['number']) || !$number = (int) $instance['number'] ) {
+          $number = 3;
+        }
+        // Widget admin form
+        ?>
+        <p>
+          <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+          <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+        </p>
+
+        <p>
+          <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Events to show:'); ?></label>
+          <input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" />
+        </p>
+
+        <p>
+          <a class="page-title-action" target="_blank" href="<?php echo site_url(); ?>/wp-admin/post-new.php?post_type=events">Add New Event</a>
+        </p>
+
+        <?php
+      }
+
+    // save it
+    public function update( $new_instance, $old_instance ) {
+      $instance = array();
+      $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+      $instance['number'] = (int) $new_instance['number'];
+      return $instance;
+    }
+
+} // Class dismissed

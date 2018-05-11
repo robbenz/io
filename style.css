@@ -14,6 +14,15 @@ body {font-family: 'Lato', sans-serif;}
 
 #main_homepage {margin-top:30px;}
 
+.events_wrap h2.widget-title {background-color:#464444; padding: 4px; border:3px solid #fff; border-radius:10px; color:#fff; margin-top:-35px;text-align:center;}
+section.widget {padding:15px; background-color:#ccc; border-radius:5px;}
+.event_widget_wrap {}
+#event_list {margin-top:20px}
+#event_list tr.spacer {height:15px;}
+#event_list tr {margin-bottom:5px;}
+#event_list td.event_date{border-right: 2px solid #464444;text-align:center;}
+#event_list td.event_desc{padding-left: 10px;}
+
 .img_box {
   position: relative;
   margin-bottom:20px;

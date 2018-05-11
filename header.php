@@ -20,7 +20,7 @@
     <?php
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('io-main');
-			wp_head(); 
+			wp_head();
 
       $left_menu = wp_nav_menu([
         'theme_location'  => 'main-left',
@@ -55,14 +55,14 @@
         <div class="wrapper header-menu-wrapper">
           <nav class="header-menu header-menu-left"><?php echo $left_menu; ?></nav>
           <div class="site-logo">
-            
+
           </div>
           <nav class="header-menu header-menu-right"><?php echo $right_menu; ?></nav>
         </div>
-        
+
         <div class="wrapper header-menu-mobile">
         	<div class="site-logo">
-             
+
   				</div>
 
           <nav class="site-menu" role="navigation" aria-label="Main Menu">
@@ -77,3 +77,5 @@
           </nav>
         </div>
       </header>
+
+			<div style="width:100%; background-color:#425462; height:30px;"></div>

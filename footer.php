@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$menu = wp_nav_menu([
 		'theme_location'  => 'main',
 		'container'       => false,
@@ -16,7 +16,7 @@
 	  		<div class="wrapper">
 	  			<div class="left">
 	  				<div class="footer-logo">
-	  					
+
 	  				</div>
 	  			</div>
 	  			<div class="right">
@@ -32,5 +32,14 @@
   		</div>
   	</footer>
   	<?php wp_footer(); ?>
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="<?php bloginfo('template_directory'); ?>/resources/assets/js/jquery-2.1.1.min.js"></script>
+		<script src="<?php bloginfo('template_directory'); ?>/resources/assets/js/bootstrap.min.js"></script>
+		<script src="<?php bloginfo('template_directory'); ?>/resources/assets/js/main.js"></script>
+
+
 	</body>
 </html>

@@ -9,3 +9,26 @@ Tags: minimalist, template, html5, CSS3, fluid, responsive, sass
   The CSS, HTML and design is released under GPL:
   http://www.opensource.org/licenses/gpl-3.0.html
 */
+
+body {font-family: 'Lato', sans-serif;}
+
+#main_homepage {margin-top:30px;}
+
+.img_box {
+  position: relative;
+  margin-bottom:20px;
+}
+
+.img_box_text {
+  position: absolute;
+  top: 9%;
+  left: 10%;
+  left: 13%;
+  padding: 71px 0px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  border: 2.5px solid #fff;
+  width: 73%;
+}

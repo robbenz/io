@@ -1,11 +1,11 @@
-<?php 
+<?php
 $featured_img = get_the_post_thumbnail_url();
 get_header(); ?>
 <main role="main">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<article role="article">
 			<header>
-				<?php 
+				<?php
 					if(!empty($featured_img)){
 						echo '<div class="standard-hero-image" style="background-image:url('.$featured_img.')"></div>';
 					}
@@ -22,9 +22,9 @@ get_header(); ?>
 					<?php the_content(); ?>
 				</div>
 			</div>
-			<?php 
-				echo View::render('brands'); 
-				echo View::render('leadership'); 
+			<?php
+				echo View::render('brands');
+				echo View::render('leadership');
 			?>
 		</article>
 

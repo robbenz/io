@@ -15,7 +15,7 @@
 		<?php wp_enqueue_style( 'theme-meta', get_stylesheet_uri() ); ?>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/public/css/style.css">
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/resources/assets/css/bootstrap.min.css" >
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <!-- Javascript detection script -->
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
 
@@ -80,4 +80,4 @@
         </div>
       </header>
 
-			<div style="width:100%; background-color:#425462; height:30px;"></div>
+			<div style="margin-bottom:40px; width:100%; background-color:#425462; height:30px;"></div>

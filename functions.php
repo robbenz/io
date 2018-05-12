@@ -72,20 +72,20 @@ add_action( 'widgets_init', 'iodd_widgets_init' );
 // Register and load the widget
 function pre_load_widget() {
     register_widget( 'events_widget' );
-    register_widget( 'blurbs_widget' );
+    register_widget( 'fundys_widget' );
 }
 add_action( 'widgets_init', 'pre_load_widget' );
 
 
 // Create fundy widget
-class blurbs_widget extends WP_Widget {
+class fundys_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
-            'blurbs_widget',
-            __('All the Blurbs', 'blurbs_widget_domain'),
+            'fundys_widget',
+            __('Featured Fundy', 'fundys_widget_domain'),
             array(
-                'description'   => __( 'This widget will show the blurb you select', 'blurbs_widget_domain' ),
-                'classname'     => __( 'blurbs_wrap', 'blurbs_widget_domain' ),
+                'description'   => __( 'This widget will show the fundy you select', 'fundys_widget_domain' ),
+                'classname'     => __( 'fundys_wrap', 'fundys_widget_domain' ),
             )
         );
     }
@@ -93,16 +93,16 @@ class blurbs_widget extends WP_Widget {
     // front
     public function widget( $args, $instance ) {
       $title = apply_filters( 'widget_title', $instance['title'] );
-      $blurb = $instance[ 'blurb' ];
+      $fundy = $instance[ 'fundy' ];
 
       echo $args['before_widget'];   // before and after widget args -- theme default i guess
       if ( ! empty( $title ) ) {
         echo $args['before_title'] . $title . $args['after_title'];
       }
 
-      $new_blurb = get_post($blurb);
-      echo '<h2>' . $new_blurb->post_title . '</h2><br>';
-      echo $new_blurb->post_content . '<br>';
+      $new_fundy = get_post($fundy);
+      echo '<div class="fund_top"><p>Fundy (fun-dee)<br>Referring to fundamental values and behaviors that help define how we act and roll with our customers.</p></div>';
+      echo '<div class="fund_bottom"><h2>' . $new_fundy->post_title . '</h2>'.$new_fundy->post_content . '</div><br>';
 
       echo $args['after_widget'];
     }
@@ -112,13 +112,13 @@ class blurbs_widget extends WP_Widget {
       if ( isset( $instance[ 'title' ] ) ) {
         $title = $instance[ 'title' ];
       } else {
-        $title = __( 'All The Blurbs', 'blurbs_widget_domain' );
+        $title = __( 'Featured Fundy', 'fundys_widget_domain' );
       }
-      $blurb = $instance[ 'blurb' ];
+      $fundy = $instance[ 'fundy' ];
       $args = array(
-        'post_type'   => 'blurbs'
+        'post_type'   => 'fundys'
       );
-      $all_blurbs = get_posts( $args );
+      $all_fundys = get_posts( $args );
 
       // Widget admin form
       ?>
@@ -128,15 +128,15 @@ class blurbs_widget extends WP_Widget {
       </p>
 
       <p>
-        <select id="<?php echo $this->get_field_id('blurb'); ?>" name="<?php echo $this->get_field_name('blurb'); ?>" class="widefat" style="width:100%;">
-          <?php foreach($all_blurbs as $one_blurb) : ?>
-            <option <?php selected( $instance['blurb'], $one_blurb->ID ); ?>  value="<?php echo $one_blurb->ID; ?>"><?php echo $one_blurb->post_title; ?></option>
+        <select id="<?php echo $this->get_field_id('fundy'); ?>" name="<?php echo $this->get_field_name('fundy'); ?>" class="widefat" style="width:100%;">
+          <?php foreach($all_fundys as $one_fundy) : ?>
+            <option <?php selected( $instance['fundy'], $one_fundy->ID ); ?>  value="<?php echo $one_fundy->ID; ?>"><?php echo $one_fundy->post_title; ?></option>
           <?php endforeach; ?>
         </select>
       </p>
 
       <p>
-        <a class="page-title-action" target="_blank" href="<?php echo site_url(); ?>/wp-admin/post-new.php?post_type=blurbs">Add New Blurb</a>
+        <a class="page-title-action" target="_blank" href="<?php echo site_url(); ?>/wp-admin/post-new.php?post_type=fundys">Add New fundy</a>
       </p>
 
       <?php
@@ -146,7 +146,7 @@ class blurbs_widget extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
       $instance = array();
       $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-      $instance['blurb'] = $new_instance['blurb'];
+      $instance['fundy'] = $new_instance['fundy'];
       return $instance;
     }
 

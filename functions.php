@@ -45,6 +45,30 @@ add_action ( 'phpmailer_init', function ($phpmailer) {
 }, 3, 1 );
 
 
+/*** var_dump_ array/string all cute and pretty  ***/
+function _pre($array) { echo '<pre>'; print_r ($array); echo '</pre>'; }
+/*** END ***/
+
+/* bst.css Load Last Version */
+add_action( 'wp_enqueue_scripts', 'load_last_css', 999 );
+function load_last_css() {
+	if ( ! wp_style_is( 'style', 'done' ) ) {
+		wp_deregister_style( 'style' );
+		wp_dequeue_style( 'style' );
+		$style_filepath = get_stylesheet_directory() . '/style.css';
+		if ( file_exists($style_filepath) ) {
+      wp_enqueue_style('style',
+      get_template_directory_uri() . '/style.css', false,
+      filemtime(get_stylesheet_directory() . '/style.css'));
+		}
+	}
+}
+/* END */
+
+
+
+
+
 /**
  * Register widget area.
  *

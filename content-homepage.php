@@ -77,28 +77,30 @@ $main_intro_copy   = iodd_get_theme_option( 'main_intro_copy' );
 
 <?php
 
-      // $loop = new WP_Query(
-      //   array(
-      //     'post_type' => 'slides',
-      //     'orderby'   => 'post_id',
-      //     'order'     => 'ASC'
-      //   )
-      // );
+      $menu = new WP_Query(
+        array(
+          'post_type' => 'menu_grid',
+          'orderby'   => 'post_id',
+          'order'     => 'ASC'
+        )
+      );
       // $y=0;
-      // while( $loop->have_posts() ) : $loop->the_post();
       // for ($x=0; $x<$count_slides->publish; $x++) {
       // $count_slides = wp_count_posts( $post_type = 'slides' );
-      // endwhile;
+      //
 ?>
+
+
       <div class="row" id="img_box_wrap">
-          <?php for ($x=0; $x<6; $x++) { ?>
+          <?php while( $menu->have_posts() ) : $menu->the_post(); ?>
           <div class="img_box text-center col-xs-4">
-              <img src="http://via.placeholder.com/300x300" alt="" class="img-responsive">
+              <img src="<?php the_post_thumbnail_url(); ?>" alt="" class="img-responsive">
               <div class="img_box_text">
-                  <p>Lorem ipsum</p>
+                  <p><?php the_title(); ?></p>
               </div>
           </div>
-          <?php } ?>
+
+          <?php endwhile; ?>
       </div>
 
 

@@ -212,6 +212,8 @@ class events_widget extends WP_Widget {
             'post_status'         => 'publish',
             'ignore_sticky_posts' => true,
             'post_type'           => 'events',
+            'orderby'             => 'date',
+            'order'               => 'ASC'
           )
         );
 

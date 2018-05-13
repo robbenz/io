@@ -101,17 +101,21 @@ Tags: minimalist, template, html5, CSS3, fluid, responsive, sass
     margin-top:30px;
 }
  .img_box_text {
-     position: absolute;
-     top: 9%;
-     left: 10%;
-     left: 13%;
-     padding: 71px 0px;
-     font-size: 18px;
-     font-weight: bold;
-     color: #fff;
-     text-transform: uppercase;
-     border: 2.5px solid #fff;
-     width: 73%;
+   position: absolute;
+   top: 9%;
+   left: 10%;
+   left: 13%;
+   font-size: 18px;
+   font-weight: bold;
+   color: #fff;
+   text-transform: uppercase;
+   border: 2.5px solid #fff;
+   width: 73%;
+   height: 82%;
+}
+.img_box_text p{
+  position: relative;
+  top: 33%;
 }
  .carousel-inner {
     overflow: hidden;

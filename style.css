@@ -14,7 +14,7 @@ body {font-family: 'Lato', sans-serif;}
 
 /*#main_homepage {margin-top:30px;}*/
 
-
+h2 {font-size: 24px;}
 
 
 h2.widget-title{    text-transform: uppercase;
@@ -22,7 +22,7 @@ h2.widget-title{    text-transform: uppercase;
     width: 80%;
     margin: 0 10%;
     font-weight: 700;
-    padding: 4px;
+    padding: 10px 4px;
     border: 3px solid #fff;
     border-radius: 10px;
     color: #fff;
@@ -43,7 +43,9 @@ h2.widget-title{    text-transform: uppercase;
     text-align: center;
     font-size: 16px;
     margin-top: -24px;}
-.fund_bottom h2{ text-align:center; }
+.fund_bottom h2{     text-align: center;
+    text-transform: uppercase;
+    font-weight: 800; }
 .fund_bottom {    background-color: #e1ebf1;
     padding: 15px 40px 60px;
     /* padding-bottom: 60px; */
@@ -53,8 +55,15 @@ h2.widget-title{    text-transform: uppercase;
 #event_list {margin-top:20px}
 #event_list tr.spacer {height:15px;}
 #event_list tr {margin-bottom:5px;}
-#event_list td.event_date{border-right: 2px solid #464444;text-align:center;}
-#event_list td.event_desc{padding-left: 10px;}
+#event_list td.event_date{    border-right: 2px solid #425462;
+    text-align: center;
+    font-size: 24px;
+    color: #425462;
+    font-weight: 800;
+    width: 30%;
+    padding: 0 7% 0 4%;
+}
+#event_list td.event_desc{color: #425462;font-size: 24px;padding-left: 10px;}
 
 .img_box {
   position: relative;
@@ -88,8 +97,8 @@ h2.widget-title{    text-transform: uppercase;
     left: 60px;
     top: 0px;
     z-index: 999;
-    background-color: #464444;
-    color: #ccc;
+    background-color: #e1ebf1;
+    color: #425462;
     padding: 15px 45px;
     border-radius: 5px;
     border: 4px solid #fff;
@@ -100,7 +109,7 @@ h2.widget-title{    text-transform: uppercase;
 
 .carousel-caption {
     position: absolute;
-    background-color: rgba(0, 0, 102, 0.7);
+    background-color: rgba(66, 84, 98, 0.9);
     right: 0;
     left: 0;
     bottom: 0px;
@@ -120,3 +129,7 @@ h2.widget-title{    text-transform: uppercase;
 		width: 100%;
 		margin: auto;
 }
+
+.carousel-indicators {bottom: -35px;}
+.carousel-indicators li {border-color: #425462; }
+.carousel-indicators .active {background-color: #425462;

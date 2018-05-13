@@ -100,9 +100,13 @@ class fundys_widget extends WP_Widget {
         echo $args['before_title'] . $title . $args['after_title'];
       }
 
+
       $new_fundy = get_post($fundy);
-      echo '<div class="fund_top"><p>Fundy (fun-dee)<br>Referring to fundamental values and behaviors that help define how we act and roll with our customers.</p></div>';
-      echo '<div class="fund_bottom"><h2>' . $new_fundy->post_title . '</h2>'.$new_fundy->post_content . '</div><br>';
+      $fund_pro  = iodd_get_theme_option( 'fund_pro' );
+      $fund_copy = iodd_get_theme_option( 'fund_copy' );
+
+      echo '<div class="fund_top"><p><b>'.$fund_pro.'</b><br>'.$fund_copy.'</p></div>';
+      echo '<div class="fund_bottom"><h2>'.$new_fundy->post_title.'</h2>'.$new_fundy->post_content.'</div><br>';
 
       echo $args['after_widget'];
     }
@@ -254,3 +258,198 @@ class events_widget extends WP_Widget {
     }
 
 } // Class dismissed
+
+
+
+
+
+
+/**
+ * Create A Simple Theme Options Panel
+ * https://www.wpexplorer.com/wordpress-theme-options/
+ */
+
+
+// Start Class
+if ( ! class_exists( 'IODD_Theme_Options' ) ) {
+
+	class IODD_Theme_Options {
+
+		/**
+		 * Start things up
+		 *
+		 * @since 1.0.0
+		 */
+		public function __construct() {
+
+			// We only need to register the admin panel on the back-end
+			if ( is_admin() ) {
+				add_action( 'admin_menu', array( 'IODD_Theme_Options', 'add_admin_menu' ) );
+				add_action( 'admin_init', array( 'IODD_Theme_Options', 'register_settings' ) );
+			}
+
+		}
+
+		/**
+		 * Returns all theme options
+		 *
+		 * @since 1.0.0
+		 */
+		public static function get_theme_options() {
+			return get_option( 'theme_options' );
+		}
+
+		/**
+		 * Returns single theme option
+		 *
+		 * @since 1.0.0
+		 */
+		public static function get_theme_option( $id ) {
+			$options = self::get_theme_options();
+			if ( isset( $options[$id] ) ) {
+				return $options[$id];
+			}
+		}
+
+		/**
+		 * Add sub menu page
+		 *
+		 * @since 1.0.0
+		 */
+		public static function add_admin_menu() {
+			add_menu_page(
+				esc_html__( 'Theme Settings', 'text-domain' ),
+				esc_html__( 'Theme Settings', 'text-domain' ),
+				'manage_options',
+				'theme-settings',
+				array( 'IODD_Theme_Options', 'create_admin_page' )
+			);
+		}
+
+		/**
+		 * Register a setting and its sanitization callback.
+		 *
+		 * We are only registering 1 setting so we can store all options in a single option as
+		 * an array. You could, however, register a new setting for each option
+		 *
+		 * @since 1.0.0
+		 */
+		public static function register_settings() {
+			register_setting( 'theme_options', 'theme_options', array( 'IODD_Theme_Options', 'sanitize' ) );
+		}
+
+		/**
+		 * Sanitization callback
+		 *
+		 * @since 1.0.0
+		 */
+		public static function sanitize( $options ) {
+
+			// If we have options lets sanitize them
+			if ( $options ) {
+
+				// Main Intro Header
+				if ( ! empty( $options['main_intro_header'] ) ) {
+					$options['main_intro_header'] = sanitize_text_field( $options['main_intro_header'] );
+				} else {
+					unset( $options['main_intro_header'] ); // Remove from options if empty
+				}
+
+				// Main Intro Copy
+				if ( ! empty( $options['main_intro_copy'] ) ) {
+					$options['main_intro_copy'] = sanitize_text_field( $options['main_intro_copy'] );
+				} else {
+					unset( $options['main_intro_copy'] ); // Remove from options if empty
+				}
+
+				// Fundy pro
+				if ( ! empty( $options['fund_pro'] ) ) {
+					$options['fund_pro'] = sanitize_text_field( $options['fund_pro'] );
+				} else {
+					unset( $options['fund_pro'] ); // Remove from options if empty
+				}
+
+				// Fundy copy
+				if ( ! empty( $options['fund_copy'] ) ) {
+					$options['fund_copy'] = sanitize_text_field( $options['fund_copy'] );
+				} else {
+					unset( $options['fund_copy'] ); // Remove from options if empty
+				}
+
+			}
+
+			// Return sanitized options
+			return $options;
+
+		}
+
+		/**
+		 * Settings page output
+		 *
+		 * @since 1.0.0
+		 */
+		public static function create_admin_page() { ?>
+
+			<div class="wrap">
+
+				<h1><?php esc_html_e( 'Theme Options', 'text-domain' ); ?></h1>
+
+				<form method="post" action="options.php">
+
+					<?php settings_fields( 'theme_options' ); ?>
+
+					<table class="form-table wpex-custom-admin-login-table">
+
+						<?php // Main Intro Header ?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Main Intro Header', 'text-domain' ); ?></th>
+							<td>
+								<?php $value = self::get_theme_option( 'main_intro_header' ); ?>
+								<input type="text" name="theme_options[main_intro_header]" value="<?php echo esc_attr( $value ); ?>">
+							</td>
+						</tr>
+
+						<?php // Main Intro Copy ?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Main Intro Copy', 'text-domain' ); ?></th>
+							<td>
+								<?php $value = self::get_theme_option( 'main_intro_copy' ); ?>
+								<input type="text" name="theme_options[main_intro_copy]" value="<?php echo esc_attr( $value ); ?>">
+							</td>
+						</tr>
+
+						<?php // Fundee Pronunciation ?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Fundy Pronunciation', 'text-domain' ); ?></th>
+							<td>
+								<?php $value = self::get_theme_option( 'fund_pro' ); ?>
+								<input type="text" name="theme_options[fund_pro]" value="<?php echo esc_attr( $value ); ?>">
+							</td>
+						</tr>
+
+						<?php // Fundee Copy ?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Fundy Copy', 'text-domain' ); ?></th>
+							<td>
+								<?php $value = self::get_theme_option( 'fund_copy' ); ?>
+								<input type="text" name="theme_options[fund_copy]" value="<?php echo esc_attr( $value ); ?>">
+							</td>
+						</tr>
+
+					</table>
+
+					<?php submit_button(); ?>
+
+				</form>
+
+			</div><!-- .wrap -->
+		<?php }
+
+	}
+}
+new IODD_Theme_Options();
+
+// Helper function to use in your theme to return a theme option value
+function iodd_get_theme_option( $id = '' ) {
+	return IODD_Theme_Options::get_theme_option( $id );
+}

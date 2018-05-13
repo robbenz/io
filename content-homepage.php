@@ -1,9 +1,16 @@
 <!-- MAIN HOMEPAGE
 ================================================== -->
+
+<?php
+$main_intro_header = iodd_get_theme_option( 'main_intro_header' );
+$main_intro_copy   = iodd_get_theme_option( 'main_intro_copy' );
+
+?>
+
 <section id="main_homepage">
 
-  <h1>Welcome to the  Intranet</h1>
-  <p>Hello and welcome to the Clio Intranet. We hope you find this page as a valuable resource. If you have any questions or comments, contact us here.</p>
+  <h1><?php echo $main_intro_header; ?></h1>
+  <p><?php echo $main_intro_copy; ?></p>
 
   <?php $count_slides = wp_count_posts( $post_type = 'slides' ); ?>
 
@@ -67,6 +74,22 @@
 
   		<?php wp_reset_postdata(); ?>
 
+
+<?php
+
+      // $loop = new WP_Query(
+      //   array(
+      //     'post_type' => 'slides',
+      //     'orderby'   => 'post_id',
+      //     'order'     => 'ASC'
+      //   )
+      // );
+      // $y=0;
+      // while( $loop->have_posts() ) : $loop->the_post();
+      // for ($x=0; $x<$count_slides->publish; $x++) {
+      // $count_slides = wp_count_posts( $post_type = 'slides' );
+      // endwhile;
+?>
       <div class="row" id="img_box_wrap">
           <?php for ($x=0; $x<6; $x++) { ?>
           <div class="img_box text-center col-xs-4">
@@ -77,5 +100,9 @@
           </div>
           <?php } ?>
       </div>
+
+
+
+
 
 </section>
